@@ -7,7 +7,7 @@
 * 2. Implicit Binding- The referencing that occurs within an object when a method is place on it. It always references whatever is on the left side of the last "."
 
 
-* 3. New Binding- 
+* 3. New Binding- Used to create objects using a new Keyword and Function(constructor function).
 
 
 * 4. Explicit Binding- When we specifically tell this what to reference using methods like bind, call and apply.
@@ -37,21 +37,36 @@ const ninja = {
 }
 
 console.log(ninja.saying())
+
 // Principle 3
 
 // code example for New Binding
 
-const swordsman = {
-    name: "Inigo Montoya"
+function Turtle(food) {
+    this.food = food
+    this.eat = function() {
+        console.log(`Leonardo loves to eat ${this.food}`)
+    }
 }
 
-const importantThings = ['Hello', 'killed', 'my father', 'Prepare']
-
-function introduce(importantThings1, importantThings2, importantThings3, importantThings4) {
-    console.log(`$[importantThings1], My name is $[this.name]. You $[importantThing2] $[importantThings3]. $[importantThings4] to die.`)
-}
+const leo = new Turtle('pizza.')
+leo.eat()
 
 // Principle 4
 
 // code example for Explicit Binding
 
+const swordsman = {
+    name: "Inigo Montoya"
+}
+
+const importantThings = ['Hello', 'killed', 'my father', 'Prepare'];
+
+function introduce(importantThings1, importantThings2, importantThings3, importantThings4) {
+    console.log(`${importantThings1}, My name is ${this.name}. You ${importantThings2} ${importantThings3}. ${importantThings4} to die.`);
+}
+
+//introduce.apply(swordsman, importantThings)
+const threeFingeredMan = introduce.bind(swordsman, ...importantThings);
+
+threeFingeredMan();
