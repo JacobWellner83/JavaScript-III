@@ -49,7 +49,7 @@ function Turtle(food) {
     }
 }
 
-const leo = new Turtle('pizza.')
+const leo = new Turtle('pizza')
 leo.eat()
 
 // Principle 4
